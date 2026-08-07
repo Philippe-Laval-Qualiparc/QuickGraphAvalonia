@@ -1,0 +1,38 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:QuickGraphAvalonia.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="QuickGraphAvalonia.Views.PointerWindow"
+        Title="Pointer Window">
+
+        <Design.DataContext>
+                <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+                <vm:PointerViewModel />
+        </Design.DataContext>
+    
+    <StackPanel Margin="20" Background="DarkGray" 
+                PointerPressed="PointerPressedHandler" >
+        <TextBlock x:Name="Results"
+                   Margin="5"
+                   FontSize="24"
+                   HorizontalAlignment="Center"
+                   >Ready...</TextBlock>
+        
+        <Border Cursor="Hand" Background="LightGray" Padding="20">
+            <TextBlock Text="Click me" />
+        </Border>
+
+        <Border Cursor="SizeWestEast" Background="LightBlue" Padding="20">
+            <TextBlock Text="Resize horizontally" />
+        </Border>
+        
+        <Button 
+            PointerEntered="PointerEnteredHandler"
+            PointerExited="PointerExitedHandler"
+            PointerMoved="PointerMovedHandler"
+            Content="Test"></Button>
+    </StackPanel>
+</Window>

@@ -16,6 +16,17 @@ public partial class MainViewModel : ViewModelBase
 
 
     [RelayCommand]
+    private void ShowPointer()
+    {
+        Debug.WriteLine("ShowPointerCommand");
+        PointerWindow pointerWindow = new PointerWindow
+        {
+            DataContext = new PointerViewModel()
+        };
+        pointerWindow.Show();
+    }
+    
+    [RelayCommand]
     private void Open()
     {
         Debug.WriteLine("OpenCommand");
