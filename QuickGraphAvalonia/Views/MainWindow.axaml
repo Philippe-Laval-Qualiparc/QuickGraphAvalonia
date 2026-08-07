@@ -1,0 +1,115 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:QuickGraphAvalonia.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+        x:Class="QuickGraphAvalonia.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="QuickGraphAvalonia"
+        Width="400"
+        Height="450">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <!--<NativeMenuItemSeparator Header="-" ="_File">
+        <MenuItem Header="_Open..." Command="{Binding OpenCommand}"/>
+        <Separator />
+        <MenuItem Header="_Exit" />
+    </NativeMenuItemSeparator>-->
+    
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open..." Command="{Binding OpenCommand}"/>
+                <Separator />
+                <MenuItem Header="_Exit" Command="{Binding ExitCommand}"/>
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="Copy">
+                    <!--<MenuItem.Icon>
+                        <PathIcon Data="{StaticResource copy_regular}"/>
+                    </MenuItem.Icon>-->
+                </MenuItem>
+                <MenuItem Header="Paste">
+                    <!--<MenuItem.Icon>
+                        <PathIcon Data="{StaticResource clipboard_paste_regular}"/>
+                    </MenuItem.Icon>-->
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_View">
+                <MenuItem Header="Show Toolbar" ToggleType="CheckBox" IsChecked="{Binding ShowToolbar}" />
+                <MenuItem Header="Show Status Bar" ToggleType="CheckBox" IsChecked="{Binding ShowStatusBar}" />
+                <Separator />
+                <MenuItem Header="Light" ToggleType="Radio" GroupName="Theme"
+                          IsChecked="{Binding IsLightTheme}" />
+                <MenuItem Header="Dark" ToggleType="Radio" GroupName="Theme"
+                          IsChecked="{Binding IsDarkTheme}" />
+            </MenuItem>
+        </Menu>
+
+        <StackPanel>
+            <Border Margin="5" CornerRadius="10" Background="LightBlue">
+                <TextBlock Margin="5"
+                           FontSize="24"
+                           HorizontalAlignment="Center"
+                           Text="Temperature Converter">
+                </TextBlock>
+            </Border>
+            <Grid ShowGridLines="False" Margin="5"
+                  ColumnDefinitions="120, 100"
+                  RowDefinitions="Auto, Auto">
+                <TextBlock Grid.Row="0" Grid.Column="0" 
+                           Margin="10">Celsius</TextBlock>
+                <TextBox Grid.Row="0" Grid.Column="1" 
+                         Margin="0 5" 
+                         Name="Celsius"
+                         TextChanged="Celsius_TextChanged"
+                         Text="0" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="10">Fahrenheit</TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="1" 
+                         Margin="0 5" 
+                         Name="Fahrenheit" 
+                         IsReadOnly="True" Text="0" />
+            </Grid>
+            <!--<Button HorizontalAlignment="Center"
+                Click="Button_OnClick">Calculate</Button>-->
+            
+            <Button Content="Button"
+                    HorizontalAlignment="Center">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuItem Header="Open" Command="{Binding OpenCommand}" />
+                        <MenuItem Header="-"/>
+                        <MenuItem Header="Close"/>        
+                    </MenuFlyout>
+                </Button.Flyout>
+            </Button>
+            
+            
+            <Button Content="Actions">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuItem Header="Open" Command="{Binding OpenCommand}">
+                            <!--<MenuItem.Icon>
+                                <PathIcon Data="{StaticResource open_regular}" />
+                            </MenuItem.Icon>-->
+                        </MenuItem>
+                        <MenuItem Header="-" />
+                        <!--<MenuItem Header="Delete" Command="{Binding DeleteCommand}"
+                                  CommandParameter="{Binding SelectedItem}" />-->
+                    </MenuFlyout>
+                </Button.Flyout>
+            </Button>
+            
+        </StackPanel>
+        
+        
+        
+    </DockPanel>
+</Window>
