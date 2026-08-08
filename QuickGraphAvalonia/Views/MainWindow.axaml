@@ -44,6 +44,8 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_View">
+                <MenuItem Header="_Show WebView" Command="{Binding ShowWebViewCommand}"/>
+
                 <MenuItem Header="Show Toolbar" ToggleType="CheckBox" IsChecked="{Binding ShowToolbar}" />
                 <MenuItem Header="Show Status Bar" ToggleType="CheckBox" IsChecked="{Binding ShowStatusBar}" />
                 <Separator />

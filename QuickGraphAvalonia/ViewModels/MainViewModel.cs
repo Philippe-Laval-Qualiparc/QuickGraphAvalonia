@@ -16,6 +16,17 @@ public partial class MainViewModel : ViewModelBase
 
 
     [RelayCommand]
+    private void ShowWebView()
+    {
+        Debug.WriteLine("ShowWebViewCommand");
+        WebWindow webWindow = new WebWindow
+        {
+            DataContext = new WebViewModel()
+        };
+        webWindow.Show();
+    }
+    
+    [RelayCommand]
     private void ShowPointer()
     {
         Debug.WriteLine("ShowPointerCommand");

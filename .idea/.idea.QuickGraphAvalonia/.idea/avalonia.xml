@@ -5,8 +5,10 @@
       <map>
         <entry key="QuickGraphAvalonia/App.axaml" value="QuickGraphAvalonia/QuickGraphAvalonia.csproj" />
         <entry key="QuickGraphAvalonia/Views/Drawing.axaml" value="QuickGraphAvalonia/QuickGraphAvalonia.csproj" />
+        <entry key="QuickGraphAvalonia/Views/DrawingWindow.axaml" value="QuickGraphAvalonia/QuickGraphAvalonia.csproj" />
         <entry key="QuickGraphAvalonia/Views/MainWindow.axaml" value="QuickGraphAvalonia/QuickGraphAvalonia.csproj" />
         <entry key="QuickGraphAvalonia/Views/PointerWindow.axaml" value="QuickGraphAvalonia/QuickGraphAvalonia.csproj" />
+        <entry key="QuickGraphAvalonia/Views/WebWindow.axaml" value="QuickGraphAvalonia/QuickGraphAvalonia.csproj" />
       </map>
     </option>
   </component>
