@@ -83,6 +83,8 @@
             <!--<Button HorizontalAlignment="Center"
                 Click="Button_OnClick">Calculate</Button>-->
             
+            
+            
             <Button Content="Button"
                     HorizontalAlignment="Center">
                 <Button.Flyout>

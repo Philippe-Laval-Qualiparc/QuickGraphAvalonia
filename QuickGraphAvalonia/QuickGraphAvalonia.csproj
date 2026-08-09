@@ -17,6 +17,24 @@
     </ItemGroup>
     
     <ItemGroup>
+        <EmbeddedResource Update="Translations\Resources.resx">
+            <Generator>MSBuild:Compile</Generator>
+            <PublicClass>true</PublicClass>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+            
+            <StronglyTypedFileName>Translations\Resources.Designer.cs</StronglyTypedFileName>
+            <StronglyTypedLanguage>CSharp</StronglyTypedLanguage>
+            <StronglyTypedNamespace>QuickGraphAvalonia.Translations</StronglyTypedNamespace>
+            <StronglyTypedClassName>Resources</StronglyTypedClassName>
+        </EmbeddedResource>
+
+        <Compile Update="Translations\Resources.Designer.cs">
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+        </Compile>
+    </ItemGroup>
+    
+    <ItemGroup>
         <PackageReference Include="Avalonia" Version="12.1.0"/>
         <PackageReference Include="Avalonia.Controls.WebView" Version="12.0.1" />
         <PackageReference Include="Avalonia.Desktop" Version="12.1.0"/>
@@ -28,21 +46,6 @@
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2"/>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.10" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <EmbeddedResource Update="Assets\Resources.resx">
-            <Generator>PublicResXFileCodeGenerator</Generator>
-            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-        </EmbeddedResource>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Update="Assets\Resources.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Resources.resx</DependentUpon>
-        </Compile>
     </ItemGroup>
     
 </Project>

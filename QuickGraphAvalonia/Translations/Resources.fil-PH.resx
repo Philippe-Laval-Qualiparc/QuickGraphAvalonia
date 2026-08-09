@@ -24,4 +24,7 @@
     <data name="HelloText" xml:space="preserve">
         <value>Hello</value>
     </data>
+    <data name="test" xml:space="preserve">
+        <value>test</value>
+    </data>
 </root>
