@@ -20,5 +20,8 @@
     </resheader>
     <data name="GreetingText" xml:space="preserve">
         <value>Magandang Araw!</value>
-    </data> 
+    </data>
+    <data name="HelloText" xml:space="preserve">
+        <value>Hello</value>
+    </data>
 </root>

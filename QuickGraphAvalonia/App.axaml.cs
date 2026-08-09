@@ -24,8 +24,8 @@ public partial class App : Application
         //var culture = new CultureInfo("ar-SA");
         //var culture = new CultureInfo("de-DE")
         var culture = new CultureInfo("fr-FR");
-          
-        //Assets.Resources.Culture = culture;
+        
+        Assets.Resources.Culture = culture;
         Thread.CurrentThread.CurrentCulture = culture;
         Thread.CurrentThread.CurrentUICulture = culture;
         
