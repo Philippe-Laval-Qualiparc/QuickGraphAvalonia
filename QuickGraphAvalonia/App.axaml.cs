@@ -25,6 +25,8 @@ public partial class App : Application
         //var culture = new CultureInfo("de-DE")
         var culture = new CultureInfo("fr-FR");
         
+        // see fix for Rider
+        // https://github.com/AvaloniaUI/avalonia-docs/issues/1076
         Translations.Resources.Culture = culture;
         Thread.CurrentThread.CurrentCulture = culture;
         Thread.CurrentThread.CurrentUICulture = culture;
