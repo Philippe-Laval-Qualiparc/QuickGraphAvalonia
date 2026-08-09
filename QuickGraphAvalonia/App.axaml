@@ -2,9 +2,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="QuickGraphAvalonia.App"
              xmlns:local="using:QuickGraphAvalonia"
+             xmlns:converters="clr-namespace:QuickGraphAvalonia.Converters"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
+     <Application.Resources>
+         <converters:CurrencyConverter x:Key="CurrencyConverter"/>
+     </Application.Resources>
+             
     <Application.DataTemplates>
         <local:ViewLocator />
     </Application.DataTemplates>

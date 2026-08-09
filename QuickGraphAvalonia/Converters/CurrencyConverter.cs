@@ -1,0 +1,24 @@
+using System;
+using System.Globalization;
+using Avalonia.Data.Converters;
+
+namespace QuickGraphAvalonia.Converters;
+
+/// <summary>
+/// Converts a decimal to a currency string.
+/// </summary>
+public sealed class CurrencyConverter : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (value is decimal amount)
+            return string.Format(culture, "{0:C}", amount);
+
+        return value;
+    }
+
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        return value;
+    }
+}

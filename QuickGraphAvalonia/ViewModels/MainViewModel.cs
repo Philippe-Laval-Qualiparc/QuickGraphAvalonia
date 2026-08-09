@@ -7,9 +7,9 @@ using QuickGraphAvalonia.Views;
 
 namespace QuickGraphAvalonia.ViewModels;
 
-public partial class MainViewModel(IBusinessService businessService) : ViewModelBase
+public partial class MainViewModel(IBusinessService? businessService) : ViewModelBase
 {
-    private readonly IBusinessService _businessService = businessService;
+    private readonly IBusinessService? _businessService = businessService;
 
     [ObservableProperty] public partial string Greeting { get; set; } = "Welcome to Avalonia!";
 
@@ -18,6 +18,10 @@ public partial class MainViewModel(IBusinessService businessService) : ViewModel
     [ObservableProperty] public partial bool ShowToolbar { get; set; } = false;
     [ObservableProperty] public partial bool ShowStatusBar { get; set; } = true;
 
+    public MainViewModel() : this(null)
+    {
+        
+    }
 
     [RelayCommand]
     private void ShowWebView()
@@ -53,6 +57,26 @@ public partial class MainViewModel(IBusinessService businessService) : ViewModel
     }
 
     [RelayCommand]
+    private void ShowDragDropWindow()
+    {
+        DragDropWindow window = new DragDropWindow
+        {
+            DataContext = new DragDropViewModel()
+        };
+        window.Show();
+    }
+    
+    [RelayCommand]
+    private void ShowCustomerWindow()
+    {
+        CustomerWindow window = new CustomerWindow()
+        {
+            DataContext = new CustomerInfoViewModel()
+        };
+        window.Show();
+    }
+
+    [RelayCommand]
     private void Exit()
     {
         Debug.WriteLine("ExitCommand");
@@ -61,7 +85,7 @@ public partial class MainViewModel(IBusinessService businessService) : ViewModel
     
     public void SwitchLanguage(string cultureCode)
     {
-        //Assets.Resources.Culture = new CultureInfo(cultureCode);
+        Translations.Resources.Culture = new CultureInfo(cultureCode);
         // Raise PropertyChanged for all localized properties
         // or reload the view to pick up new strings
     }

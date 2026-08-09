@@ -1,0 +1,63 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:QuickGraphAvalonia.ViewModels"
+        xmlns:views="clr-namespace:QuickGraphAvalonia.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="540" Height="420"
+        Title="Customer overview"
+        x:DataType="vm:CustomerInfoViewModel"
+        x:Class="QuickGraphAvalonia.Views.CustomerWindow">
+    
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:CustomerInfoViewModel />
+    </Design.DataContext>
+    
+    <DockPanel LastChildFill="True" Margin="16">
+        <TextBlock DockPanel.Dock="Top"
+                   Classes="h1"
+                   Text="Customer overview"
+                   Margin="0,0,0,16"/>
+
+        <Grid ColumnDefinitions="2*,3*"
+              RowDefinitions="Auto,*"
+              ColumnSpacing="16"
+              RowSpacing="16">
+
+            <StackPanel Grid.Column="0" Spacing="8">
+                <TextBlock Classes="h2" Text="Details"/>
+
+                <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto" RowSpacing="8" ColumnSpacing="12">
+                    <TextBlock Text="Name:"/>
+                    <TextBox Grid.Column="1" Width="200" Text="{Binding Customer.Name}"/>
+
+                    <TextBlock Grid.Row="1" Text="Email:"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Customer.Email}"/>
+
+                    <TextBlock Grid.Row="2" Text="Status:"/>
+                    <ComboBox Grid.Row="2" Grid.Column="1" SelectedIndex="0">
+                        <ComboBoxItem>Prospect</ComboBoxItem>
+                        <ComboBoxItem>Active</ComboBoxItem>
+                        <ComboBoxItem>Dormant</ComboBoxItem>
+                    </ComboBox>
+                </Grid>
+            </StackPanel>
+
+
+            <StackPanel Grid.Column="1" Spacing="8">
+                <TextBlock Classes="h2" Text="Recent orders"/>
+                <ItemsControl ItemsSource="{Binding RecentOrders}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <views:OrderRow />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Grid>
+        
+    </DockPanel>
+</Window>
