@@ -22,6 +22,34 @@ public partial class App : Application
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
+        
+        if (ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime)
+            return;
+        
+        /*var trayIcons = new TrayIcons
+        {
+            new TrayIcon
+            {
+                Icon = new WindowIcon("avares://QuickGraphAvalonia/Assets/avalonia-logo.ico"),
+                ToolTipText = "Quick Graph",
+                Menu = new NativeMenu
+                {
+                    new NativeMenuItem("Show")//, (_, _) =>
+                    //{
+                    //return Locator.Commands.ShowMain.Execute(null);
+                    //})
+                    ,
+                    new NativeMenuItemSeparator(),
+                    new NativeMenuItem("Exit")//, (_, _) =>
+                    //{
+                    //return Locator.Commands.Exit.Execute(null);
+                    //})
+                }
+            }
+        };
+
+        TrayIcon.SetIcons(this, trayIcons);
+        */
     }
     
     public override void OnFrameworkInitializationCompleted()
@@ -78,7 +106,7 @@ public partial class App : Application
         //         DataContext = vm
         //     };
         // }
-
+        
         base.OnFrameworkInitializationCompleted();
     }
     
