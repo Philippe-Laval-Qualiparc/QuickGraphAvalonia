@@ -5,6 +5,8 @@ using Avalonia.Threading;
 
 namespace QuickGraphAvalonia;
 
+// https://wieslawsoltes.github.io/AvaloniaBook/
+
 sealed class Program
 {
     // Initialization code. Don't use any Avalonia, third-party APIs or any
