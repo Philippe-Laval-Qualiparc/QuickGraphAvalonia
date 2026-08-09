@@ -1,6 +1,9 @@
+using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
@@ -14,6 +17,8 @@ namespace QuickGraphAvalonia;
 
 public partial class App : Application
 {
+    private ServiceProvider? _services;
+    
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
@@ -31,16 +36,29 @@ public partial class App : Application
         Thread.CurrentThread.CurrentCulture = culture;
         Thread.CurrentThread.CurrentUICulture = culture;
         
-        // Register all the services needed for the application to run
-        var collection = new ServiceCollection();
-        collection.AddCommonServices();
+        _services = ConfigureServices();
 
-        // Creates a ServiceProvider containing services from the provided IServiceCollection
-        var services = collection.BuildServiceProvider();
-
-        var vm = services.GetRequiredService<MainViewModel>();
+        var vm = _services.GetRequiredService<MainViewModel>();
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
+            desktop.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+            desktop.Startup += (sender, args) =>
+            {
+                Debug.WriteLine("App started");
+            };
+            desktop.Exit += (sender, args) =>
+            {
+                Debug.WriteLine("App exited");
+
+                _services.Dispose();
+            };
+            desktop.ShutdownRequested += (object? sender, ShutdownRequestedEventArgs args) =>
+            {
+                Debug.WriteLine("App shutdown requested");
+                var windows = desktop.Windows;
+                args.Cancel = false;
+            };
+            
             MainWindow mainWindow = new MainWindow
             {
                 DataContext = vm
@@ -62,5 +80,18 @@ public partial class App : Application
         // }
 
         base.OnFrameworkInitializationCompleted();
+    }
+    
+    /// <summary>
+    /// reates a ServiceProvider containing services from the provided IServiceCollection
+    /// </summary>
+    /// <returns></returns>
+    private ServiceProvider ConfigureServices()
+    {
+        var services = new ServiceCollection();
+        
+        services.AddCommonServices();
+        
+        return services.BuildServiceProvider();
     }
 }

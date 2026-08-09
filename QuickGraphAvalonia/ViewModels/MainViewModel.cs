@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Globalization;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using QuickGraphAvalonia.Interfaces;
