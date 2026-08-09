@@ -1,12 +1,16 @@
 using System.Diagnostics;
+using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using QuickGraphAvalonia.Interfaces;
 using QuickGraphAvalonia.Views;
 
 namespace QuickGraphAvalonia.ViewModels;
 
-public partial class MainViewModel : ViewModelBase
+public partial class MainViewModel(IBusinessService businessService) : ViewModelBase
 {
+    private readonly IBusinessService _businessService = businessService;
+
     [ObservableProperty] public partial string Greeting { get; set; } = "Welcome to Avalonia!";
 
     [ObservableProperty] public partial bool IsLightTheme { get; set; } = true;
@@ -53,5 +57,12 @@ public partial class MainViewModel : ViewModelBase
     {
         Debug.WriteLine("ExitCommand");
         System.Environment.Exit(0);
+    }
+    
+    public void SwitchLanguage(string cultureCode)
+    {
+        //Assets.Resources.Culture = new CultureInfo(cultureCode);
+        // Raise PropertyChanged for all localized properties
+        // or reload the view to pick up new strings
     }
 }

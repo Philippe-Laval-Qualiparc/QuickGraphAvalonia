@@ -44,8 +44,17 @@ public partial class WebWindow : Window
         // Execute JavaScript
         //await WebView.InvokeScript("alert('Hello World')");
         //await ((NativeWebView)sender!).InvokeScript(" alert('Hello World') ");
-    
-        await ((NativeWebView)sender!).InvokeScript(""" invokeCSharpAction("{'key': 10}") """);
+        
+        if (sender is null)
+            return;
+        
+        NativeWebView? webView = sender as NativeWebView;
+        if (webView is null)
+            return;
+        
+        await webView.InvokeScript("console.log('Hello World')");
+        
+        await webView.InvokeScript(""" invokeCSharpAction("{'key': 10}") """);
     }
     
     private void NativeWebView_OnWebMessageReceived(object? sender, WebMessageReceivedEventArgs e)
